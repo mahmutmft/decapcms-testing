@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <!-- Include the Decap CMS script -->
-    <script src="https://unpkg.com/@staticcms/app@^3.4.5/dist/static-cms-app.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
   </head>
   <body>
     <script>
@@ -19,8 +19,9 @@
             name: 'github',
             repo: 'mahmutmft/decapcms-testing',
             branch: 'master',
-            auth_type: 'pkce',
-            app_id: 'Iv1.c2e3c5c2c5c2c5c2'  // You'll need to replace this with your GitHub App ID
+            base_url: 'https://api.netlify.com',
+            auth_endpoint: 'auth',
+            client_id: 'Ov23liyqxXEJik5mig6N'
           },
           media_folder: 'uploads',
           public_folder: '/uploads',

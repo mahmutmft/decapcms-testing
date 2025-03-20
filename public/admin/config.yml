@@ -2,8 +2,9 @@ backend:
   name: github
   repo: mahmutmft/decapcms-testing
   branch: master
-  auth_type: pkce
-  app_id: Iv1.c2e3c5c2c5c2c5c2  # You'll need to replace this with your GitHub App ID
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  client_id: Ov23liyqxXEJik5mig6N
 
 local_backend: true
 
