@@ -2,10 +2,6 @@ backend:
   name: github
   repo: mahmutmft/decapcms-testing
   branch: master
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  client_id: Ov23liyqxXEJik5mig6N
-  auth_scope: repo,user
 
 local_backend: true
 
