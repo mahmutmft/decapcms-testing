@@ -1,19 +1,22 @@
 backend:
   name: github
-  repo: mahmutmft/decapcms-testing # Update with your actual GitHub username/repo
-  branch: master  # Changed from main to master
+  repo: mahmutmft/decapcms-testing
+  branch: master
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
 # When testing locally with the local git gateway, uncomment this:
 # local_backend: true
 
-site_url: https://mahmutmft.github.io/decapcms-testing # Update with your actual GitHub Pages URL
-display_url: https://mahmutmft.github.io/decapcms-testing # Update with your actual GitHub Pages URL
+# This line should match your site URL
+site_url: https://mahmutmft.github.io/decapcms-testing
+display_url: https://mahmutmft.github.io/decapcms-testing
 
-# Media files will be stored in the repo under public/uploads
-media_folder: "public/uploads" 
-public_folder: "/decapcms-testing/uploads" # Update to match GitHub Pages path
+publish_mode: editorial_workflow
+
+# These paths are relative to the public directory
+media_folder: "uploads"
+public_folder: "/decapcms-testing/uploads"
 
 # Content Collections
 collections:
