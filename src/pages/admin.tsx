@@ -3,12 +3,10 @@ import Head from 'next/head';
 
 export default function AdminPage() {
   useEffect(() => {
-    const basePath = process.env.NODE_ENV === 'development' ? '' : '/decapcms-testing';
-    const adminPath = `${basePath}/admin/index.html`;
-    
-    // Check if we're already on the admin page to prevent redirect loops
-    if (!window.location.pathname.endsWith('index.html')) {
-      window.location.href = adminPath;
+    // Only redirect if we're not already on the admin HTML page
+    if (!window.location.pathname.includes('/admin/index.html')) {
+      const basePath = process.env.NODE_ENV === 'development' ? '' : '/decapcms-testing';
+      window.location.replace(`${basePath}/admin/index.html`);
     }
   }, []);
 
@@ -18,7 +16,7 @@ export default function AdminPage() {
         <title>Admin - Decap CMS</title>
       </Head>
       <div className="flex min-h-screen items-center justify-center">
-        <p>Redirecting to admin interface...</p>
+        <p>Loading admin interface...</p>
       </div>
     </>
   );

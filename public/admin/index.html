@@ -4,28 +4,58 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <!-- Include Netlify Identity for authentication -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       // Handle GitHub Pages base path
-      if (window.location.hostname !== 'localhost') {
-        window.CMS_PATH_PREFIX = '/decapcms-testing';
-      }
+      window.CMS_PATH_PREFIX = '/decapcms-testing';
+      window.CMS_MANUAL_INIT = true;
     </script>
+    <!-- Include the Decap CMS script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
+      // Initialize the CMS with the correct config
+      const config = {
+        backend: {
+          name: 'github',
+          repo: 'mahmutmft/decapcms-testing',
+          branch: 'master',
+          base_url: 'https://api.netlify.com',
+          auth_endpoint: 'auth'
+        },
+        load_config_file: false,
+        media_folder: 'uploads',
+        public_folder: '/decapcms-testing/uploads',
+        collections: [
+          {
+            name: 'blog',
+            label: 'Blog',
+            folder: 'content/blog',
+            create: true,
+            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+            fields: [
+              {label: 'Title', name: 'title', widget: 'string'},
+              {label: 'Publish Date', name: 'date', widget: 'datetime'},
+              {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false},
+              {label: 'Body', name: 'body', widget: 'markdown'}
+            ]
+          },
+          {
+            name: 'pages',
+            label: 'Pages',
+            folder: 'content/pages',
+            create: true,
+            fields: [
+              {label: 'Title', name: 'title', widget: 'string'},
+              {label: 'Body', name: 'body', widget: 'markdown'},
+              {label: 'Menu Order', name: 'order', widget: 'number', required: false}
+            ]
           }
-        });
-      }
+        ]
+      };
+
+      // Initialize the CMS
+      window.CMS.init({ config });
     </script>
   </body>
 </html> 
