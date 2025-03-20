@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  reactStrictMode: true,
   images: {
     unoptimized: true,
   },
-  basePath: '/decapcms-testing', // Replace with your repository name
-  assetPrefix: '/decapcms-testing/', // Replace with your repository name
+  basePath: process.env.NODE_ENV === 'production' ? '/decapcms-testing' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/decapcms-testing/' : '',
   trailingSlash: true,
 }
 
