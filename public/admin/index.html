@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <!-- Include the Decap CMS script -->
     <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <!-- Include the Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <script>
@@ -23,10 +25,9 @@
             auth_endpoint: 'auth',
             client_id: 'Ov23liyqxXEJik5mig6N'
           },
-          media_folder: 'uploads',
+          load_config_file: false,
+          media_folder: 'public/uploads',
           public_folder: '/uploads',
-          site_url: 'https://mahmutmft.me/decapcms-testing',
-          display_url: 'https://mahmutmft.me/decapcms-testing',
           collections: [
             {
               name: 'blog',

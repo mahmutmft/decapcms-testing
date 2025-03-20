@@ -15,7 +15,7 @@ display_url: https://mahmutmft.me/decapcms-testing
 publish_mode: editorial_workflow
 
 # These paths are relative to the public directory
-media_folder: uploads
+media_folder: public/uploads
 public_folder: /uploads
 
 # Content Collections
