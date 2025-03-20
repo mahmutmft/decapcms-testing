@@ -4,63 +4,70 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Include React -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <!-- Include the Netlify CMS script -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
   </head>
   <body>
     <script>
       // Create a script element for the CMS
       const loadCMS = () => {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js';
-        script.onload = () => {
-          // Initialize the CMS
-          const config = {
-            backend: {
-              name: 'github',
-              repo: 'mahmutmft/decapcms-testing',
-              branch: 'master'
-            },
-            local_backend: true,
-            media_folder: 'uploads',
-            public_folder: '/uploads',
-            collections: [
-              {
-                name: 'blog',
-                label: 'Blog',
-                folder: 'content/blog',
-                create: true,
-                slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-                fields: [
-                  {label: 'Title', name: 'title', widget: 'string'},
-                  {label: 'Publish Date', name: 'date', widget: 'datetime'},
-                  {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false},
-                  {label: 'Body', name: 'body', widget: 'markdown'}
-                ]
-              },
-              {
-                name: 'pages',
-                label: 'Pages',
-                folder: 'content/pages',
-                create: true,
-                fields: [
-                  {label: 'Title', name: 'title', widget: 'string'},
-                  {label: 'Body', name: 'body', widget: 'markdown'},
-                  {label: 'Menu Order', name: 'order', widget: 'number', required: false}
-                ]
-              }
-            ]
-          };
+        // Check if we're in development mode
+        const isLocal = window.location.hostname === 'localhost';
 
+        // Initialize the CMS with the correct config
+        const config = {
+          backend: {
+            name: 'github',
+            repo: 'mahmutmft/decapcms-testing',
+            branch: 'master',
+            base_url: 'https://api.netlify.com',
+            auth_endpoint: 'auth',
+            client_id: 'Ov23liyqxXEJik5mig6N',
+            auth_scope: 'repo,user'
+          },
+          media_folder: 'uploads',
+          public_folder: '/uploads',
+          site_url: 'https://mahmutmft.github.io/decapcms-testing',
+          display_url: 'https://mahmutmft.github.io/decapcms-testing',
+          collections: [
+            {
+              name: 'blog',
+              label: 'Blog',
+              folder: 'content/blog',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              fields: [
+                {label: 'Title', name: 'title', widget: 'string'},
+                {label: 'Publish Date', name: 'date', widget: 'datetime'},
+                {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false},
+                {label: 'Body', name: 'body', widget: 'markdown'}
+              ]
+            },
+            {
+              name: 'pages',
+              label: 'Pages',
+              folder: 'content/pages',
+              create: true,
+              fields: [
+                {label: 'Title', name: 'title', widget: 'string'},
+                {label: 'Body', name: 'body', widget: 'markdown'},
+                {label: 'Menu Order', name: 'order', widget: 'number', required: false}
+              ]
+            }
+          ]
+        };
+
+        // Initialize CMS
+        try {
           console.log('Initializing CMS...');
           window.CMS.init(config);
           console.log('CMS initialization completed');
-        };
-
-        script.onerror = (error) => {
-          console.error('Failed to load CMS script:', error);
-        };
-
-        document.body.appendChild(script);
+        } catch (error) {
+          console.error('Failed to initialize CMS:', error);
+        }
       };
 
       // Load the CMS when the page is ready
