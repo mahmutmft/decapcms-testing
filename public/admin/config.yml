@@ -1,0 +1,38 @@
+backend:
+  name: github
+  repo: mahmut/decapcms-testing # Replace with your GitHub username/repo
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+# When testing locally with the local git gateway, uncomment this:
+# local_backend: true
+
+site_url: https://mahmut.github.io/decapcms-testing # Replace with your GitHub Pages URL
+display_url: https://mahmut.github.io/decapcms-testing # Replace with your GitHub Pages URL
+
+# Media files will be stored in the repo under public/uploads
+media_folder: "public/uploads" 
+public_folder: "/decapcms-testing/uploads" # Update to match GitHub Pages path
+
+# Content Collections
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Menu Order", name: "order", widget: "number", required: false} 
