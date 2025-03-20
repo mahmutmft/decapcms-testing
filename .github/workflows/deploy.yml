@@ -24,8 +24,10 @@ jobs:
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
         
-      - name: Build
-        run: npm run build
+      - name: Build and Export
+        run: |
+          npm run build
+          npm run export
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
