@@ -2,12 +2,14 @@ backend:
   name: github
   repo: mahmutmft/decapcms-testing
   branch: master
+  base_url: https://mahmutmft.me
+  auth_endpoint: oauth
 
 local_backend: true
 
 # This line should match your site URL
-site_url: https://mahmutmft.github.io/decapcms-testing
-display_url: https://mahmutmft.github.io/decapcms-testing
+site_url: https://mahmutmft.me/decapcms-testing
+display_url: https://mahmutmft.me/decapcms-testing
 
 publish_mode: editorial_workflow
 

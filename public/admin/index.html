@@ -14,20 +14,19 @@
     <script>
       // Create a script element for the CMS
       const loadCMS = () => {
-        // Check if we're in development mode
-        const isLocal = window.location.hostname === 'localhost';
-
         // Initialize the CMS with the correct config
         const config = {
           backend: {
             name: 'github',
             repo: 'mahmutmft/decapcms-testing',
-            branch: 'master'
+            branch: 'master',
+            base_url: 'https://mahmutmft.me',
+            auth_endpoint: 'oauth'
           },
           media_folder: 'uploads',
           public_folder: '/uploads',
-          site_url: 'https://mahmutmft.github.io/decapcms-testing',
-          display_url: 'https://mahmutmft.github.io/decapcms-testing',
+          site_url: 'https://mahmutmft.me/decapcms-testing',
+          display_url: 'https://mahmutmft.me/decapcms-testing',
           collections: [
             {
               name: 'blog',
