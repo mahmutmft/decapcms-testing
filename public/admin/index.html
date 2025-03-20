@@ -7,21 +7,20 @@
     <!-- Include React -->
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <!-- Include the Netlify CMS script -->
-    <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+    <!-- Include the Decap CMS script -->
+    <script src="https://unpkg.com/@staticcms/app@^3.4.5/dist/static-cms-app.js"></script>
   </head>
   <body>
     <script>
-      // Create a script element for the CMS
-      const loadCMS = () => {
+      window.addEventListener('load', function() {
         // Initialize the CMS with the correct config
         const config = {
           backend: {
             name: 'github',
             repo: 'mahmutmft/decapcms-testing',
             branch: 'master',
-            base_url: 'https://mahmutmft.me',
-            auth_endpoint: 'oauth'
+            auth_type: 'pkce',
+            app_id: 'Iv1.c2e3c5c2c5c2c5c2'  // You'll need to replace this with your GitHub App ID
           },
           media_folder: 'uploads',
           public_folder: '/uploads',
@@ -63,14 +62,7 @@
         } catch (error) {
           console.error('Failed to initialize CMS:', error);
         }
-      };
-
-      // Load the CMS when the page is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadCMS);
-      } else {
-        loadCMS();
-      }
+      });
     </script>
   </body>
 </html> 

@@ -2,8 +2,8 @@ backend:
   name: github
   repo: mahmutmft/decapcms-testing
   branch: master
-  base_url: https://mahmutmft.me
-  auth_endpoint: oauth
+  auth_type: pkce
+  app_id: Iv1.c2e3c5c2c5c2c5c2  # You'll need to replace this with your GitHub App ID
 
 local_backend: true
 
