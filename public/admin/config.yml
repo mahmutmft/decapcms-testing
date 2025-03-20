@@ -2,11 +2,8 @@ backend:
   name: github
   repo: mahmutmft/decapcms-testing
   branch: master
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
-# When testing locally with the local git gateway, uncomment this:
-# local_backend: true
+local_backend: true
 
 # This line should match your site URL
 site_url: https://mahmutmft.github.io/decapcms-testing
@@ -15,14 +12,14 @@ display_url: https://mahmutmft.github.io/decapcms-testing
 publish_mode: editorial_workflow
 
 # These paths are relative to the public directory
-media_folder: "uploads"
-public_folder: "/decapcms-testing/uploads"
+media_folder: uploads
+public_folder: /uploads
 
 # Content Collections
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "content/blog"
+  - name: blog
+    label: Blog
+    folder: content/blog
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -31,9 +28,9 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
       
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
+  - name: pages
+    label: Pages
+    folder: content/pages
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}

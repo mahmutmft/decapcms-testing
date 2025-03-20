@@ -4,70 +4,70 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
-    <!-- Include the Decap CMS script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <script>
-      // Enable debug mode for better error messages
-      window.CMS_DEBUG = true;
-    </script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <script>
-      // Initialize the CMS with the correct config
-      const config = {
-        backend: {
-          name: 'github',
-          repo: 'mahmutmft/decapcms-testing',
-          branch: 'master',
-          client_id: 'Ov23liyqxXEJik5mig6N',
-          auth_scope: 'repo,user',
-        },
-        media_folder: 'uploads',
-        public_folder: '/decapcms-testing/uploads',
-        site_url: 'https://mahmutmft.github.io/decapcms-testing',
-        display_url: 'https://mahmutmft.github.io/decapcms-testing',
-        logo_url: 'https://mahmutmft.github.io/decapcms-testing/images/logo.png',
-        show_preview_links: true,
-        collections: [
-          {
-            name: 'blog',
-            label: 'Blog',
-            folder: 'content/blog',
-            create: true,
-            slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-            fields: [
-              {label: 'Title', name: 'title', widget: 'string'},
-              {label: 'Publish Date', name: 'date', widget: 'datetime'},
-              {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false},
-              {label: 'Body', name: 'body', widget: 'markdown'}
+      // Create a script element for the CMS
+      const loadCMS = () => {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js';
+        script.onload = () => {
+          // Initialize the CMS
+          const config = {
+            backend: {
+              name: 'github',
+              repo: 'mahmutmft/decapcms-testing',
+              branch: 'master'
+            },
+            local_backend: true,
+            media_folder: 'uploads',
+            public_folder: '/uploads',
+            collections: [
+              {
+                name: 'blog',
+                label: 'Blog',
+                folder: 'content/blog',
+                create: true,
+                slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+                fields: [
+                  {label: 'Title', name: 'title', widget: 'string'},
+                  {label: 'Publish Date', name: 'date', widget: 'datetime'},
+                  {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false},
+                  {label: 'Body', name: 'body', widget: 'markdown'}
+                ]
+              },
+              {
+                name: 'pages',
+                label: 'Pages',
+                folder: 'content/pages',
+                create: true,
+                fields: [
+                  {label: 'Title', name: 'title', widget: 'string'},
+                  {label: 'Body', name: 'body', widget: 'markdown'},
+                  {label: 'Menu Order', name: 'order', widget: 'number', required: false}
+                ]
+              }
             ]
-          },
-          {
-            name: 'pages',
-            label: 'Pages',
-            folder: 'content/pages',
-            create: true,
-            fields: [
-              {label: 'Title', name: 'title', widget: 'string'},
-              {label: 'Body', name: 'body', widget: 'markdown'},
-              {label: 'Menu Order', name: 'order', widget: 'number', required: false}
-            ]
-          }
-        ]
+          };
+
+          console.log('Initializing CMS...');
+          window.CMS.init(config);
+          console.log('CMS initialization completed');
+        };
+
+        script.onerror = (error) => {
+          console.error('Failed to load CMS script:', error);
+        };
+
+        document.body.appendChild(script);
       };
 
-      // Add error handling
-      window.onerror = function(msg, url, lineNo, columnNo, error) {
-        console.error('CMS Error:', msg, error);
-        return false;
-      };
-
-      // Initialize CMS
-      try {
-        window.CMS.init({ config });
-        console.log('CMS initialization started');
-      } catch (error) {
-        console.error('Failed to initialize CMS:', error);
+      // Load the CMS when the page is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadCMS);
+      } else {
+        loadCMS();
       }
     </script>
   </body>
